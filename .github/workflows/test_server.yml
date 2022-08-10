@@ -22,7 +22,7 @@ jobs:
       - name: Run test
         working-directory: ./server
         env:
-          client_id: ${{ secrets.client_id }}
-          client_secret:  ${{ secrets.client_secret }}
-          client_url:  ${{ secrets.client_url }}
+          CLIENT_ID: ${{ secrets.client_id }}
+          CLIENT_SECRET:  ${{ secrets.client_secret }}
+          CLIENT_URL:  ${{ secrets.client_url }}
         run: yarn test
