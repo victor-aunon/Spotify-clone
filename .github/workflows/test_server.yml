@@ -16,12 +16,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '18.7'
-        env:
-          client_id: ${{ secrets.client_id }}
-          client_secret:  ${{ secrets.client_secret }}
       - name: Install dependencies
         working-directory: ./server
         run: yarn install
       - name: Run test
         working-directory: ./server
+        env:
+          client_id: ${{ secrets.client_id }}
+          client_secret:  ${{ secrets.client_secret }}
         run: yarn test
