@@ -1,0 +1,22 @@
+name: Test Spotify clone server
+
+on:
+  issue_comment: # github.event_name == issue_comment
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test using Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.7'
+        env:
+          CLIENT_ID: d4f54bc73dd644a59993f20bea51bf94
+          CLIENT_SECRET: 731a50ce48fc4fefacb093217e64783e
+          CLIENT_URL: http://localhost:3000
+          PORT: 3002
+      - run: yarn install
+      - run: yarn test
