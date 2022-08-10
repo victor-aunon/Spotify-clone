@@ -5,7 +5,7 @@ on:
   - pull_request
 
 jobs:
-  if: github.ref_name == 'server'
+  if: ${{ github.ref_name == 'server' }}
   test:
     environment: testing
     runs-on: ubuntu-latest
