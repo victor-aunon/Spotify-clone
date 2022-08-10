@@ -1,0 +1,23 @@
+name: Test Spotify clone server
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  if: github.ref_name == 'server'
+  test:
+    environment: testing
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test using Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.7'
+        env:
+          client_id: ${{ secrets.client_id }}
+          client_secret:  ${{ secrets.client_secret }}
+      - run: yarn install
+      - run: yarn test
