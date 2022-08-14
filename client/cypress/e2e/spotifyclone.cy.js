@@ -18,7 +18,9 @@ describe("SpotifyClone", () => {
     });
 
     // Search a song
-    cy.get('[placeholder="Search songs or artists"]').type("Porcelain");
+    cy.get('[placeholder="Search songs or artists"]')
+      .click({ force: true })
+      .type("Porcelain");
 
     // Get the album thumbnail
     cy.get("img").should(

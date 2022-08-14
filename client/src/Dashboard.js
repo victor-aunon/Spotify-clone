@@ -42,7 +42,6 @@ export default function Dashboard({ code }) {
     if (cancel) return;
 
     spotifyApi.searchTracks(search).then(res => {
-      console.log(res.body.tracks.items)
       setSearchResults(
         res.body.tracks.items.map(track => {
           const smallestAlbumImage = track.album.images.reduce(
