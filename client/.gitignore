@@ -14,7 +14,6 @@
 /build
 
 # misc
-set_env_vars.ps1
 .DS_Store
 .env
 .env.local

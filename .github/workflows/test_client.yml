@@ -54,4 +54,4 @@ jobs:
         with:
           working-directory: ./client
           start: yarn start
-          test: yarn cypress:run
+          run: yarn cypress:run
