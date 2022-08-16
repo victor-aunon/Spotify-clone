@@ -1,4 +1,3 @@
 server/
 .vscode
 test_server.yml
-test_client.yml

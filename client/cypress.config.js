@@ -8,7 +8,7 @@ module.exports = defineConfig({
     experimentalSessionAndOrigin: true,
   },
   defaultCommandTimeout: 10000,
-  video: true,
+  video: false,
   component: {
     devServer: {
       framework: "create-react-app",

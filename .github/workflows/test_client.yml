@@ -1,0 +1,58 @@
+name: Test Spotify clone client
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test-components:
+    if: ${{ github.ref_name == 'client' }}
+    environment: testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test using Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.7'
+      - name: Install dependencies
+        working-directory: ./client
+        run: yarn install
+      - name: Run tests
+        working-directory: ./client
+        env:
+          REACT_APP_ENVIRONMENT: ${{ secrets.react_app_environment }}
+          REACT_APP_CLIENT_ID: ${{ secrets.react_app_client_id }}
+          REACT_APP_CLIENT_SECRET:  ${{ secrets.react_app_client_secret }}
+          REACT_APP_SERVER_URL:  ${{ secrets.react_app_server_url }}
+        run: yarn test
+
+  cypress-run:
+    if: ${{ github.ref_name == 'client' }}
+    environment: testing
+    runs-on: ubuntu-latest
+    container: cypress/included:9.4.1
+    steps:
+      - name: Checkout
+        working-directory: ./client
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '18.7'
+      - name: Install dependencies
+        working-directory: ./client
+        run: yarn install
+      - name: Cypress run
+        working-directory: ./client
+        uses: cypress-io/github-action@v4
+        env:
+          REACT_APP_ENVIRONMENT: ${{ secrets.react_app_environment }}
+          REACT_APP_CLIENT_ID: ${{ secrets.react_app_client_id }}
+          REACT_APP_CLIENT_SECRET:  ${{ secrets.react_app_client_secret }}
+          REACT_APP_SERVER_URL:  ${{ secrets.react_app_server_url }}
+          cypress_spotify_account: ${{ secrets.cypress_spotify_account }}
+          cypress_spotify_pass: ${{ secrets.cypress_spotify_pass }}
+        with:
+          working-directory: ./client
+          start: yarn start
+          test: yarn cypress:run

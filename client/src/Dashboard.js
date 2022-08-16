@@ -71,7 +71,7 @@ export default function Dashboard({ code }) {
 
     axios
       .get(
-        process.env.REACT_APP_ENVIRONMENT !== "production"
+        process.env.REACT_APP_ENVIRONMENT === "development"
           ? "http://localhost:3001/lyrics"
           : `${process.env.REACT_APP_SERVER_URL}/lyrics`,
         {

@@ -9,7 +9,7 @@ export default function useAuth(code) {
   useEffect(() => {
     axios
       .post(
-        process.env.REACT_APP_ENVIRONMENT !== "production"
+        process.env.REACT_APP_ENVIRONMENT === "development"
           ? "http://localhost:3001/login"
           : `${process.env.REACT_APP_SERVER_URL}/login`,
         {
@@ -37,7 +37,7 @@ export default function useAuth(code) {
     const interval = setInterval(() => {
       axios
         .post(
-          process.env.REACT_APP_ENVIRONMENT !== "production"
+          process.env.REACT_APP_ENVIRONMENT === "development"
             ? "http://localhost:3001/refresh"
             : `${process.env.REACT_APP_SERVER_URL}/refresh`,
           {

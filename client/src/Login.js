@@ -5,9 +5,10 @@ import { Container } from "react-bootstrap";
 const queryString = new URLSearchParams({
   client_id: process.env.REACT_APP_CLIENT_ID,
   response_type: "code",
-  redirect_uri: process.env.REACT_APP_ENVIRONMENT !== "production"
-  ? "http://localhost:3000"
-  : `${process.env.REACT_APP_CLIENT_URL}`,
+  redirect_uri:
+    process.env.REACT_APP_ENVIRONMENT === "production"
+      ? `${process.env.REACT_APP_CLIENT_URL}`
+      : "http://localhost:3000",
 }).toString();
 
 const permissions = [
@@ -21,7 +22,9 @@ const permissions = [
   "user-modify-playback-state",
 ];
 
-const AUTH_URL = `https://accounts.spotify.com/authorize?${queryString}&scope=${permissions.join("%20")}`;
+const AUTH_URL = `https://accounts.spotify.com/authorize?${queryString}&scope=${permissions.join(
+  "%20"
+)}`;
 
 export default function Login() {
   return (
