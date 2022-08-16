@@ -33,10 +33,9 @@ jobs:
     runs-on: ubuntu-latest
     container: cypress/included:9.4.1
     steps:
-      - name: Checkout
-        working-directory: ./client
-        uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - name: Test using Node.js
+        uses: actions/setup-node@v1
         with:
           node-version: '18.7'
       - name: Install dependencies
